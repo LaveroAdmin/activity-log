@@ -1,0 +1,76 @@
+{
+    "name": "laveroadmin/activity-log",
+    "title": {
+        "en": "Activity Log & Audit",
+        "ru": "Журнал активности и аудит"
+    },
+    "description": {
+        "en": "Track user activity and model attribute diffs powered by Spatie Activitylog.",
+        "ru": "Журналирование действий пользователей и аудит изменений моделей на базе Spatie Activitylog."
+    },
+    "category": "security",
+    "icon": "icon-history",
+    "version": "1.0.0",
+    "author": {
+        "name": "Aleksandr Kireev",
+        "email": "hello@bespredel.name",
+        "url": "https://bespredel.name"
+    },
+    "github": "https://github.com/LaveroAdmin/activity-log",
+    "setup": {
+        "commands": [
+            {
+                "cmd": "php artisan vendor:publish --provider=\"Spatie\\Activitylog\\ActivitylogServiceProvider\" --tag=\"activitylog-migrations\"",
+                "desc": {
+                    "en": "Publish activity_log database migrations",
+                    "ru": "Публикация миграций таблицы activity_log"
+                }
+            },
+            {
+                "cmd": "php artisan migrate",
+                "desc": {
+                    "en": "Run database migrations",
+                    "ru": "Применение миграций"
+                }
+            },
+            {
+                "cmd": "php artisan admin:import activity-log",
+                "desc": {
+                    "en": "Import admin menu item and permissions",
+                    "ru": "Импорт пункта меню журнала активности"
+                }
+            }
+        ],
+        "config": {
+            "file": "config/admin.php",
+            "code": "'activity-log' => [\n    'enable' => true,\n],"
+        },
+        "requirements": {
+            "en": [
+                "PHP >= 8.1"
+            ],
+            "ru": [
+                "PHP >= 8.1"
+            ]
+        },
+        "notes": {
+            "en": [
+                "Add the Spatie\\Activitylog\\Traits\\LogsActivity trait to Eloquent models you wish to track.",
+                "Implement getActivitylogOptions(): LogOptions in your tracked models."
+            ],
+            "ru": [
+                "Подключите trait Spatie\\Activitylog\\Traits\\LogsActivity в Eloquent модели, изменения которых вы хотите отслеживать.",
+                "В моделях определите метод getActivitylogOptions(): LogOptions."
+            ]
+        }
+    },
+    "key": "activity-log",
+    "compatibility": {
+        "php": ">=8.1",
+        "laravel": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+        "admin": "^1.0",
+        "extensions": [
+            "pdo"
+        ]
+    }
+}
